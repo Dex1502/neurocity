@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+
+    <h2>Загрузчик файлов</h2>
+    <table>
+
+    </table>
+    <button id="load">Загрузить</button>
+
+
+    <script>
+        load.addEventListener('click',()=>{
+            window.location.href='/download'
+        })
+
+        const fileUrl = 'https://store.neuro-city.ru/downloads/for-test-tasks/';
+
+        table=document.querySelector('table')
+
+        fetch(fileUrl).then(resp => resp.json()).then(com => {
+                com.forEach(e => {
+                    fetch(fileUrl + e.name).then(resp => resp.json()).then(com => {
+                        com.forEach(e => {
+
+                            //console.log(e)
+                            let tr = document.createElement('tr')
+
+                            for (let f in e) {
+                                //console.log(e[f])
+                                let td = document.createElement('td')
+                                td.append(e[f])
+                                tr.append(td)
+                            }
+
+                            let td = document.createElement('td')
+                            tr.append(td)
+
+                            table.append(tr)
+                        });
+                    })
+                });
+            })
+
+    </script>
+
+    <style>
+        table td{
+            border:solid 1px;
+            padding: 5px;
+        }
+    </style>
+
+</body>
+
+
+</html>

@@ -1,0 +1,25 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+
+    <h2>Выберите файл для переворота</h2>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required/>
+            <button type="submit">Отправить</button>
+        </form>
+        <button id="back">Назад</button>
+        <script>
+                back.addEventListener('click',()=>{
+                    window.location.href='/';
+                    })
+        </script>
+
+
+</body>
+
+
+</html>

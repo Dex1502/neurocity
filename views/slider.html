@@ -1,0 +1,197 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+
+    <section class="AchieveSection">
+        <div style="position: relative;">
+            <div class="fc" style="margin-top: 100px; position: relative;">
+                <div>
+                    <div class="fsb" style="align-items: end;">
+                        <h2>Слайдер</h1>
+                        <div class="gradeBtns" style="margin-top:40px;">
+                            <img src="btnLeft.svg">
+                            <img src="btnRight.svg">
+                        </div>
+                    </div>
+                    
+                    <div class="sliderMain mb30">
+                        <div class="sliderCont">
+                              
+            
+                        
+                        </div>
+                    </div>
+            
+                    
+    
+                    <div class="kolBtn">
+                        <button id="btn1">1</button>
+                        <button id="btn2">2</button>
+                        <button id="btn3">3</button>
+                    </div>
+            
+                </div>
+            </div>
+        
+        </div>
+        </section>
+    
+        <style>
+            
+                .sliderMain{
+                    width: 1560px;
+                    overflow: hidden;
+                }
+                
+            .sliderCont{
+                display: inline-flex;
+                gap: 30px;
+            }
+            
+                .gradeBtns img{
+                    cursor: pointer;
+                }
+                
+            .gradeBl{
+                width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            background: #fff;
+            cursor: pointer;
+            /*border: #008AE0 2px solid;*/
+            }
+            
+            .fullImg{
+                width: 100%;
+            }
+            
+            
+            
+                 
+                
+             
+              .mb30{
+                margin-bottom: 30px;
+              }
+                .fc{
+                    max-width: 1530px;
+                    width: 100%;
+                    display: flex;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                .fsb{
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 20px 0;
+                }
+                .fcc{
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                }
+                
+                
+                
+            
+            
+            
+            </style>
+            
+            
+            <script>
+                btn1.addEventListener('click', () => {
+                    document.querySelector('.sliderCont').removeAttribute('style')
+                    document.querySelectorAll('.gradeBl').forEach(e=>{
+                        e.setAttribute('style','margin-left:530px;')
+                    })
+                    document.querySelector('.gradeBl:last-child').setAttribute('style','margin-left:530px;padding-right:530px;')
+                    scroll(1060)
+                    document.querySelector('.sliderMain').scrollTo({
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                })
+
+                btn2.addEventListener('click',()=>{
+                    document.querySelectorAll('.gradeBl').forEach(e=>{
+                        e.removeAttribute('style')
+                    })
+                    document.querySelector('.sliderCont').setAttribute('style','gap:560px')
+                    scroll(1060)
+                    document.querySelector('.sliderMain').scrollTo({
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                })
+    
+                btn3.addEventListener('click',()=>{
+                    document.querySelectorAll('.gradeBl').forEach(e=>{
+                        e.removeAttribute('style')
+                    })
+                    document.querySelector('.sliderCont').setAttribute('style','gap:30px')
+                    scroll(530)
+                    document.querySelector('.sliderMain').scrollTo({
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                })
+    
+    
+    
+               let obj;
+               fetch('https://reqres.in/api/users')
+      .then(response => response.json())
+      .then(commits =>{
+        obj=commits
+        obj.data.forEach(e => {
+            console.log(e.avatar)
+            let div=document.createElement('div')
+            div.setAttribute('class','gradeBl')
+            let img=document.createElement('img')
+            img.setAttribute('src',`${e.avatar}`)
+            img.setAttribute('class','fullImg')
+            div.append(img)
+            document.querySelector('.sliderCont').append(div)
+        
+        });
+        document.querySelectorAll('.gradeBl').forEach(e=>{
+            e.addEventListener('click',()=>e.remove())
+        })
+    });
+    
+            
+    function scroll(gap){
+        document.querySelector('.gradeBtns').children[0].addEventListener('click',()=>{
+                document.querySelector('.sliderMain').scrollBy({
+                        left: -gap,
+                        behavior: 'smooth'
+                    });
+                    
+            })
+            
+            document.querySelector('.gradeBtns').children[1].addEventListener('click',()=>{
+                document.querySelector('.sliderMain').scrollBy({
+                        left: gap,
+                        behavior: 'smooth'
+                    });
+            
+            })
+    }
+    
+    scroll(530)
+            
+            
+             </script>
+
+
+</body>
+
+
+</html>
+
+

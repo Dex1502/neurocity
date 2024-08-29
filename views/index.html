@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/main.css">
+</head>
+
+<body>
+
+    <h1>Выберите задание</h1>
+
+    <div>
+        <button id="slider">1. Слайдер</button>
+        <button id="rotate">2. Поворот изображения</button>
+        <button id="fileloader">3. Загрузчик файлов</button>
+        <button id="node">4. NodeJS</button>
+    </div>
+    
+
+    <script>
+         rotate.addEventListener('click',()=>{
+            window.location.href='/rotate';
+        })
+        slider.addEventListener('click',()=>{
+            window.location.href='/slider';
+        })
+        fileloader.addEventListener('click',()=>{
+            window.location.href='/fileloader';
+        })
+        node.addEventListener('click',()=>{
+            window.location.href='/node';
+        })
+    </script>
+
+    <style>
+        div{
+            display: grid;
+            width: 30%;
+            gap:20px;
+        }
+    </style>
+
+
+</body>
+
+
+</html>
