@@ -78,11 +78,11 @@ app.post('/upload', upload.single('image'), async (req, res) => {
 app.get('/download',(req,res)=>{
     const fileUrl = 'https://store.neuro-city.ru/downloads/for-test-tasks/';
     let iter=0
-    fetch(fileUrl).then(resp => resp.json()).then(async com => {
-        await com.forEach(e => {
+    fetch(fileUrl).then(resp => resp.json()).then(com => {
+        com.forEach(e => {
             let nextUrl=fileUrl + e.name+'/'
-            fetch(nextUrl).then(resp => resp.json()).then(async com => {
-                await com.forEach(e=>{
+            fetch(nextUrl).then(resp => resp.json()).then(com => {
+                com.forEach(e=>{
                     iter++
          
                     const fileUrl = nextUrl+e.name;
@@ -91,8 +91,8 @@ app.get('/download',(req,res)=>{
        
                     const file = fs.createWriteStream(filePath);
 
-                    https.get(fileUrl, async (response) => {
-                        await response.pipe(file);
+                    https.get(fileUrl, (response) => {
+                        response.pipe(file);
 
                         file.on('finish', () => {
                             file.close(() => console.log('Файл '+e.name+' загружен в downloads'));
@@ -147,16 +147,16 @@ app.get('/node',(req,res)=>{
 
                 const file = fs.createWriteStream(filePath);
 
-                https.get(fileUrl, async (response) => {
+                https.get(fileUrl,  (response) => {
                     
-                    await response.pipe(file);
+                     response.pipe(file);
                     
                     file.on('finish', () => {
                         file.close(() => console.log('Файл '+e.name+' загружен в downloads2'));
                     });
                 }).on('error', (err) => {
                     fs.unlink(filePath, () => { });
-                    console.error('Error downloading the file:', err.message);
+                    console.error(err.message);
                 });
             }
             
